@@ -50,7 +50,13 @@ export default class Server {
         console.log('Escuchando sockets - sockets')
 
         this.io.on('connection', cliente => {
-            console.log('Cliente conectado')
+            console.log('Cliente conectado', cliente.id)
+
+            //Conectar cliente
+            misocket.conectarCliente(cliente)
+            
+            //Configurar usuario
+            misocket.configurarUsuario(cliente, this.io)
 
             //Mensajes
             misocket.mensaje(cliente, this.io)
@@ -61,6 +67,7 @@ export default class Server {
             })*/
             misocket.desconectar(cliente)
 
+            
 
         })
     }
