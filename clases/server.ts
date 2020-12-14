@@ -53,10 +53,13 @@ export default class Server {
             console.log('Cliente conectado', cliente.id)
 
             //Conectar cliente
-            misocket.conectarCliente(cliente)
+            misocket.conectarCliente(cliente, this.io)
             
             //Configurar usuario
             misocket.configurarUsuario(cliente, this.io)
+
+            //Obtener usuarios activos
+            misocket.obtenerUsuarios(cliente, this.io)
 
             //Mensajes
             misocket.mensaje(cliente, this.io)
@@ -65,7 +68,7 @@ export default class Server {
             /*cliente.on('disconnect', ()=>{
                 console.log('Cliente desconectado')
             })*/
-            misocket.desconectar(cliente)
+            misocket.desconectar(cliente, this.io)
 
             
 
